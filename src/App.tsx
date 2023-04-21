@@ -24,7 +24,7 @@ export const App = () => {
   return (
     <Routes>
       <Route
-        index
+        path="*"
         element={
           <UserContext.Provider value={user}>
             <ProtectedRoute>

@@ -1,3 +1,3 @@
-import { Paper } from '@mui/material';
+import { Alert } from '@mui/material';
 
-export const ProjectReport = () => <Paper>Under Construction...</Paper>;
+export const ProjectReport = () => <Alert severity="warning">Under construction...</Alert>;

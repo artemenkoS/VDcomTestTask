@@ -5,6 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
 import { Avatar } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { UserContext } from '../../App';
 import { Calendar } from '../Calendar/Calendar';
@@ -19,6 +20,7 @@ import {
   Layout,
   RouteLink,
   Sidebar,
+  SidebarContent,
   Search,
   UserDescription,
   UserInfo,
@@ -46,20 +48,25 @@ export const Home = (props: Props) => {
     <Layout data-id="layout">
       <Sidebar data-id="sidebar">
         <Logo>LOGO</Logo>
-        <RouteLink to="/crm/contacts">
-          <ContactsIcon />
-          &nbsp;Total Contacts
-        </RouteLink>
-        <RouteLink to="/crm/calendar">
-          <CalendarMonthIcon />
-          &nbsp;Calendar
-        </RouteLink>
-        <RouteLink to="/crm/projectReport">
-          <DataSaverOffIcon />
-          &nbsp;Project Report
-        </RouteLink>
+        <SidebarContent>
+          <RouteLink to="/">
+            <ContactsIcon />
+            &nbsp;Total Contacts
+          </RouteLink>
+          <RouteLink to="/calendar">
+            <CalendarMonthIcon />
+            &nbsp;Calendar
+          </RouteLink>
+          <RouteLink to="/project-report">
+            <DataSaverOffIcon />
+            &nbsp;Project Report
+          </RouteLink>
+        </SidebarContent>
 
-        <LogOut onClick={props.onLogout}>Logout</LogOut>
+        <LogOut onClick={props.onLogout}>
+          <LogoutIcon />
+          <span>Logout</span>
+        </LogOut>
       </Sidebar>
 
       <ContentLayout data-id="contentLayout">
@@ -79,9 +86,9 @@ export const Home = (props: Props) => {
         <Content data-id="content">
           <Routes>
             <Route path="/" element={<Contacts search={search} />} />
-            <Route path="calendar" element={<Calendar />} />
-            <Route path="projectReport" element={<ProjectReport />} />
-            <Route path="*" element={<p>404</p>} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/project-report" element={<ProjectReport />} />
+            <Route path="/*" element={<p>404</p>} />
           </Routes>
         </Content>
       </ContentLayout>

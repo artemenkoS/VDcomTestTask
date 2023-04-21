@@ -15,6 +15,14 @@ export const Sidebar = styled('div')(({ theme }) => ({
   flex: '0 0 226px',
   background: theme.palette.background.paper,
   position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  overflow: 'hidden',
+}));
+
+export const SidebarContent = styled('div')(() => ({
+  flex: '1 1 100%',
+  overflowY: 'scroll',
 }));
 
 export const ContentLayout = styled('div')(() => ({
@@ -52,7 +60,7 @@ export const Search = styled('input')(({ theme }) => ({
 
 export const RouteLink = styled(NavLink)(({ theme }) => ({
   fontFamily: 'Poppins',
-  fontSize: '16px',
+  fontSize: 16,
   height: '54px',
   display: 'flex',
   alignItems: 'center',
@@ -84,11 +92,11 @@ export const UserDescription = styled('div')(() => ({
 }));
 
 export const LogOut = styled('div')(({ theme }) => ({
-  fontSize: '24px',
-  position: 'absolute',
-  bottom: theme.spacing(5),
   padding: theme.spacing(2),
-  textAlign: 'center',
+  fontSize: 18,
+  justifyContent: 'center',
+  alignItems: 'center',
+  display: 'flex',
   borderTop: `2px solid  black`,
-  width: '100%',
+  cursor: 'pointer',
 }));

@@ -1,3 +1,3 @@
-import { Paper } from '@mui/material';
+import { Alert } from '@mui/material';
 
-export const Calendar = () => <Paper>Under Construction...</Paper>;
+export const Calendar = () => <Alert severity="warning">Under construction...</Alert>;
