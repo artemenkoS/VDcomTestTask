@@ -131,8 +131,9 @@
       "value":"Action"
     }
   ],
-
-  "auth":{
-    "result":"ok"
+  "signin":{
+    "id": "1",
+    "name": "Mr. Director",
+    "position": "Managing Director"
   }
 }

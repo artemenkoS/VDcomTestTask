@@ -5,7 +5,23 @@ const middlewares = jsonServer.defaults();
 
 const db = require('./db.json');
 
+server.use(function (req, res, next) {
+  setTimeout(next, 500);
+});
 server.use(middlewares);
+server.use(jsonServer.bodyParser);
+
+server.use((req, res, next) => {
+  if (req.path === '/signin') {
+    if (req.method === 'POST') {
+      res.json(db.signin);
+    } else {
+      res.sendStatus(401);
+    }
+  } else {
+    next();
+  }
+});
 
 server.get('/contacts', (req, res) => {
   const page = req.query.page ?? 1;

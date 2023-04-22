@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import { ThemeProvider } from '@mui/material/styles';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Grid from '@mui/material/Grid';
@@ -12,23 +12,45 @@ import { OutlinedInput } from '@mui/material';
 import { Logo } from '../../styles/common';
 import { Description, Form, Layout } from './styled';
 import { theme } from './theme';
+import { IUser } from '../../types';
 
 type Props = {
-  onSuccess(): void;
+  onSuccess(data: IUser): void;
+};
+
+interface IAuth {
+  login: string;
+  password: string;
+}
+
+const signin = async (data: IAuth): Promise<IUser> => {
+  const response = await fetch('/signin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  return response.json();
 };
 
 export const Login = (props: Props) => {
-  const navigate = useNavigate();
+  const { mutate, isLoading } = useMutation<IUser, {}, IAuth>(signin, {
+    onSuccess: (data) => {
+      props.onSuccess(data);
+    },
+    onError: () => {
+      alert('there was an error');
+    },
+  });
 
   const [isVisible, setIsVisible] = React.useState(false);
   const [login, setLogin] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  React.useEffect(() => {}, []);
-
-  const handleClick = () => {
-    props.onSuccess();
-    navigate('/');
+  const handleSubmit = () => {
+    mutate({ login, password });
   };
 
   const handlePasswordChange = () => {
@@ -48,13 +70,7 @@ export const Login = (props: Props) => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <InputLabel>Login</InputLabel>
-              <OutlinedInput
-                fullWidth
-                autoComplete="username"
-                margin="dense"
-                value={login}
-                onChange={(e) => setLogin(e.target.value)}
-              />
+              <OutlinedInput fullWidth margin="dense" value={login} onChange={(e) => setLogin(e.target.value)} />
             </Grid>
             <Grid item xs={12}>
               <InputLabel>Password</InputLabel>
@@ -62,7 +78,6 @@ export const Login = (props: Props) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 fullWidth
-                autoComplete="new-password"
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton color="inherit" onClick={handlePasswordChange}>
@@ -79,8 +94,8 @@ export const Login = (props: Props) => {
                 color="primary"
                 size="large"
                 variant="contained"
-                onClick={handleClick}
-                disabled={!login || !password}
+                onClick={handleSubmit}
+                disabled={isLoading || !login || !password}
               >
                 sign in
               </Button>

@@ -7,8 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "yarn start & node ./data/server.js",
-    "db": "yarn json-server data/db.json --port 11148 --delay 150"
+    "dev": "yarn start & node ./data/server.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
