@@ -88,7 +88,7 @@ export const Home = (props: Props) => {
             <Route path="/" element={<Contacts search={search} />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/project-report" element={<ProjectReport />} />
-            <Route path="/*" element={<p>404</p>} />
+            <Route path="*" element={<p>404</p>} />
           </Routes>
         </Content>
       </ContentLayout>

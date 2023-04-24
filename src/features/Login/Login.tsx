@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ThemeProvider } from '@mui/material/styles';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -10,18 +11,18 @@ import InputLabel from '@mui/material/InputLabel';
 import { OutlinedInput } from '@mui/material';
 
 import { Logo } from '../../styles/common';
+import { IUser } from '../../types';
 import { Description, Form, Layout } from './styled';
 import { theme } from './theme';
-import { IUser } from '../../types';
-
-type Props = {
-  onSuccess(data: IUser): void;
-};
 
 interface IAuth {
   login: string;
   password: string;
 }
+
+type Props = {
+  onSignin(user: IUser | null): void;
+};
 
 const signin = async (data: IAuth): Promise<IUser> => {
   const response = await fetch('/signin', {
@@ -36,12 +37,15 @@ const signin = async (data: IAuth): Promise<IUser> => {
 };
 
 export const Login = (props: Props) => {
+  const navigate = useNavigate();
+
   const { mutate, isLoading } = useMutation<IUser, {}, IAuth>(signin, {
-    onSuccess: (data) => {
-      props.onSuccess(data);
+    onSuccess: (user: IUser) => {
+      props.onSignin(user);
+      navigate('/');
     },
     onError: () => {
-      alert('there was an error');
+      console.log('there was an error');
     },
   });
 

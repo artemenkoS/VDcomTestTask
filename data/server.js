@@ -1,6 +1,7 @@
+const path = require('path');
 const jsonServer = require('json-server');
 const server = jsonServer.create();
-const router = jsonServer.router('./db.json');
+const router = jsonServer.router(path.join(__dirname, '/db.json'));
 const middlewares = jsonServer.defaults();
 
 const db = require('./db.json');
@@ -14,12 +15,27 @@ server.use(jsonServer.bodyParser);
 server.use((req, res, next) => {
   if (req.path === '/signin') {
     if (req.method === 'POST') {
-      res.json(db.signin);
+      res.cookie('user-id', db.user.id, {
+        httpOnly: true,
+        sameSite: 'strict',
+      });
+      res.json(db.user);
     } else {
       res.sendStatus(401);
     }
+  } else if (req.path === '/logout') {
+    res.clearCookie('user-id');
+    res.json({ status: 'ok' });
   } else {
     next();
+  }
+});
+
+server.get('/user', (req, res, next) => {
+  if (('user', req.headers.cookie)) {
+    res.json(db.user);
+  } else {
+    res.sendStatus(401);
   }
 });
 
