@@ -167,7 +167,7 @@ export function Contacts({ search }: Props) {
                   />
                 </TableCell>
                 {TITLES.map((title) => (
-                  <TableCell size="small">
+                  <TableCell size="small" key={title.id}>
                     <CellText>{contact[title.id]}</CellText>
                   </TableCell>
                 ))}
