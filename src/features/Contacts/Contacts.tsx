@@ -13,29 +13,19 @@ import {
   TableRow,
 } from '@mui/material';
 import { SwitchBaseProps } from '@mui/material/internal/SwitchBase';
-import { useQuery } from '@tanstack/react-query';
+
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import queryString from 'query-string';
 
+import { useGetContacts } from './hooks/useGetContacts';
 import { EditModal } from './components/EditModal/EditModal';
 import { DeleteModal } from './components/DeleteModal/DeleteModal';
 import { AddModal } from './components/AddModal/AddModal';
 import { DEFAULT_ORDER, DEFAULT_ORDER_BY, DEFAULT_PAGE, DEFAULT_PER_PAGE, TITLES } from './constants';
-import { IContact, IContactDto, Order } from './types';
+import { IContact, Order } from './types';
 
 import { CellText, EditContainer, PaginationLayout, RouteTitle, PreloaderWrap, AddContactButton } from './styled';
-
-interface IContactsParams {
-  page: number;
-  search: string;
-  order: Order;
-  orderBy: keyof IContact;
-}
-
-const fetchPContacts = (params: IContactsParams): Promise<IContactDto> =>
-  fetch('/contacts?' + queryString.stringify(params)).then((res) => res.json());
 
 type Props = { search: string };
 
@@ -49,11 +39,7 @@ export function Contacts({ search }: Props) {
   const [deleteContact, setDeleteContact] = React.useState<IContact | null>(null);
   const [newIsOpen, setNewIsOpen] = React.useState(false);
 
-  const { isLoading, isError, data } = useQuery<IContactDto>({
-    queryKey: ['contacts', page, search, order, orderBy],
-    queryFn: () => fetchPContacts({ page, search, order, orderBy }),
-    keepPreviousData: true,
-  });
+  const { isLoading, isError, data } = useGetContacts({ page, search, order, orderBy });
 
   React.useEffect(() => {
     setPage(DEFAULT_PAGE);
