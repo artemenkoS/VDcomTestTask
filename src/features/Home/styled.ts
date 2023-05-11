@@ -43,7 +43,7 @@ export const Header = styled('div')(({ theme }) => ({
 export const Content = styled('div')(({ theme }) => ({
   width: '100%',
   flex: '1 1 100%',
-  padding: theme.spacing(0, 3, 3),
+  padding: theme.spacing(2, 3, 3),
 }));
 
 export const Search = styled('input')(({ theme }) => ({

@@ -1,23 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import { IContact, IContactDto, Order } from '../types';
 
-import queryString from 'query-string';
+import { IContactDto, IContactsParams } from '../types';
+import { ServerStateKeys } from '../../../constants';
+import { fetchData } from '../../../services';
 
-interface IContactsParams {
-  page: number;
-  search: string;
-  order: Order;
-  orderBy: keyof IContact;
-}
-
-const fetchPContacts = (params: IContactsParams): Promise<IContactDto> =>
-  fetch('/contacts?' + queryString.stringify(params)).then((res) => res.json());
-
-export const useGetContacts = ({ page, search, order, orderBy }: IContactsParams) => {
+export const useGetContacts = (params: IContactsParams) => {
   const { isLoading, isError, data } = useQuery({
-    queryKey: ['contacts', page, search, order, orderBy],
-    queryFn: () => fetchPContacts({ page, search, order, orderBy }),
+    queryKey: [ServerStateKeys.Contacts, ...Object.values(params)],
+    queryFn: () => fetchData<IContactDto, IContactsParams>({ key: ServerStateKeys.Contacts, params }),
     keepPreviousData: true,
+    // useErrorBoundary: true,
   });
 
   return {

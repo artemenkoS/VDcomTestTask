@@ -1,138 +1,138 @@
 {
-  "contacts":  [
+  "contacts": [
     {
-      "clientId":"123456",
-      "clientName":"John York ",
-      "trn":"654321",
-      "endYear":"23/06/22 ",
-      "ard":"23/06/22",
-      "companyId":"423456789",
-      "email":"mail@ma.ru",
-      "phoneNumber":"+77013334455",
-      "companyAddress":"Street 54"
+      "clientId": "123456",
+      "clientName": "John York ",
+      "trn": "654321",
+      "endYear": "23/06/22 ",
+      "ard": "23/06/22",
+      "companyId": "423456789",
+      "email": "mail@ma.ru",
+      "phoneNumber": "+77013334455",
+      "companyAddress": "Street 54"
     },
     {
-      "clientId":"223456",
-      "clientName":"Jane Smith",
-      "trn":"987654",
-      "endYear":"01/01/24",
-      "ard":"01/01/24",
-      "companyId":"987654321",
-      "email":"jane.smith@email.com",
-      "phoneNumber":"+14155552671",
-      "companyAddress":"123 Main St"
+      "clientId": "223456",
+      "clientName": "Jane Smith",
+      "trn": "987654",
+      "endYear": "01/01/24",
+      "ard": "01/01/24",
+      "companyId": "987654321",
+      "email": "jane.smith@email.com",
+      "phoneNumber": "+14155552671",
+      "companyAddress": "123 Main St"
     },
     {
-      "clientId":"323456",
-      "clientName":"Bob Johnson",
-      "trn":"135790",
-      "endYear":"31/12/23",
-      "ard":"31/12/23",
-      "companyId":"569258147",
-      "email":"bjohnson@company.com",
-      "phoneNumber":"+447987654321",
-      "companyAddress":"15 High St"
+      "clientId": "323456",
+      "clientName": "Bob Johnson",
+      "trn": "135790",
+      "endYear": "31/12/23",
+      "ard": "31/12/23",
+      "companyId": "569258147",
+      "email": "bjohnson@company.com",
+      "phoneNumber": "+447987654321",
+      "companyAddress": "15 High St"
     },
     {
-      "clientId":"423456",
-      "clientName":"Alex Rodriguez",
-      "trn":"735790",
-      "endYear":"01/01/25",
-      "ard":"01/01/25",
-      "companyId":"123321123",
-      "email":"alex.rodriguez@email.com",
-      "phoneNumber":"+16505551212",
-      "companyAddress":"456 Oak St"
+      "clientId": "423456",
+      "clientName": "Alex Rodriguez",
+      "trn": "735790",
+      "endYear": "01/01/25",
+      "ard": "01/01/25",
+      "companyId": "123321123",
+      "email": "alex.rodriguez@email.com",
+      "phoneNumber": "+16505551212",
+      "companyAddress": "456 Oak St"
     },
     {
-      "clientId":"523456",
-      "clientName":"Emily Davis",
-      "trn":"435790",
-      "endYear":"30/06/22",
-      "ard":"30/06/22",
-      "companyId":"321123321",
-      "email":"emidavis@email.com",
-      "phoneNumber":"+447712345678",
-      "companyAddress":"789 Elm St"
+      "clientId": "523456",
+      "clientName": "Emily Davis",
+      "trn": "435790",
+      "endYear": "30/06/22",
+      "ard": "30/06/22",
+      "companyId": "321123321",
+      "email": "emidavis@email.com",
+      "phoneNumber": "+447712345678",
+      "companyAddress": "789 Elm St"
     },
     {
-      "clientId":"623456",
-      "clientName":"Emily Davis",
-      "trn":"635790",
-      "endYear":"30/06/22",
-      "ard":"30/06/22",
-      "companyId":"234432234",
-      "email":"emdavis@email.com",
-      "phoneNumber":"+447712345678",
-      "companyAddress":"789 Elm St"
+      "clientId": "623456",
+      "clientName": "Emily Davis",
+      "trn": "635790",
+      "endYear": "30/06/22",
+      "ard": "30/06/22",
+      "companyId": "234432234",
+      "email": "emdavis@email.com",
+      "phoneNumber": "+447712345678",
+      "companyAddress": "789 Elm St"
     },
     {
-      "clientId":"723456",
-      "clientName":"Emily Davis",
-      "trn":"335790",
-      "endYear":"30/06/22",
-      "ard":"30/06/22",
-      "companyId":"745543345",
-      "email":"edavis@email.com",
-      "phoneNumber":"+447712345678",
-      "companyAddress":"789 Elm St"
+      "clientId": "723456",
+      "clientName": "Emily Davis",
+      "trn": "335790",
+      "endYear": "30/06/22",
+      "ard": "30/06/22",
+      "companyId": "745543345",
+      "email": "edavis@email.com",
+      "phoneNumber": "+447712345678",
+      "companyAddress": "789 Elm St"
     },
     {
-      "clientId":"823456",
-      "clientName":"Emily Davis",
-      "trn":"935790",
-      "endYear":"30/06/22",
-      "ard":"30/06/22",
-      "companyId":"213213213",
-      "email":"emily.davi@email.com",
-      "phoneNumber":"+447712345678",
-      "companyAddress":"789 Elm St"
+      "clientId": "823456",
+      "clientName": "Emily Davis",
+      "trn": "935790",
+      "endYear": "30/06/22",
+      "ard": "30/06/22",
+      "companyId": "213213213",
+      "email": "emily.davi@email.com",
+      "phoneNumber": "+447712345678",
+      "companyAddress": "789 Elm St"
     }
   ],
-  "titles":[
+  "titles": [
     {
-      "id":"clientId",
-      "value":"Client ID"
+      "id": "clientId",
+      "value": "Client ID"
     },
     {
-      "id":"clientName",
-      "value":"Client ID"
+      "id": "clientName",
+      "value": "Client ID"
     },
     {
-      "id":"trn",
-      "value":"TRN/PPSN"
+      "id": "trn",
+      "value": "TRN/PPSN"
     },
     {
-      "id":"endYear",
-      "value":"Year end"
+      "id": "endYear",
+      "value": "Year end"
     },
     {
-      "id":"ard",
-      "value":"ARD"
+      "id": "ard",
+      "value": "ARD"
     },
     {
-      "id":"companyID",
-      "value":"Company number"
+      "id": "companyID",
+      "value": "Company number"
     },
     {
-      "id":"email",
-      "value":"email"
+      "id": "email",
+      "value": "email"
     },
     {
-      "id":"phoneNumber",
-      "value":"Phone Number"
+      "id": "phoneNumber",
+      "value": "Phone Number"
     },
     {
-      "id":"companyAddress",
-      "value":"Company Address"
+      "id": "companyAddress",
+      "value": "Company Address"
     },
     {
-      "id":"action",
-      "value":"Action"
+      "id": "action",
+      "value": "Action"
     }
   ],
-  "signin":{
-    "id": "1",
+  "user":{
+    "id": "232",
     "name": "Mr. Director",
     "position": "Managing Director"
   }

@@ -9,7 +9,7 @@ export const CellText = styled('div')(() => ({
 export const EditContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
-  padding: theme.spacing(2, 0),
+  padding: theme.spacing(0, 0, 2),
 }));
 
 export const RouteTitle = styled('div')(() => ({

@@ -1,38 +1,41 @@
 import * as React from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import { Home } from './features/Home/Home';
 import { Login } from './features/Login/Login';
+import { CircularProgress } from '@mui/material';
+import { PreloaderWrap } from './styled';
 import { IUser } from './types';
+import { useUserData } from './hooks/useUserData';
 
 export const UserContext = React.createContext<IUser | null>(null);
 
 export const App = () => {
-  const navigate = useNavigate();
+  const userData = useUserData();
 
-  const [user, setUser] = React.useState<IUser | null>(null);
-
-  const handleLogin = (user: IUser) => {
-    setUser(user);
-    navigate('/');
-  };
-
-  const handleLogout = () => setUser(null);
+  /* TODO: preloader */
+  if (userData.isLoading) {
+    return (
+      <PreloaderWrap>
+        <CircularProgress />
+      </PreloaderWrap>
+    );
+  }
 
   return (
-    <Routes>
-      <Route
-        path="*"
-        element={
-          <UserContext.Provider value={user}>
+    <UserContext.Provider value={userData.data ?? null}>
+      <Routes>
+        <Route
+          path="*"
+          element={
             <ProtectedRoute>
-              <Home onLogout={handleLogout} />
+              <Home />
             </ProtectedRoute>
-          </UserContext.Provider>
-        }
-      />
-      <Route path="/login" element={<Login onSuccess={handleLogin} />} />
-    </Routes>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </UserContext.Provider>
   );
 };

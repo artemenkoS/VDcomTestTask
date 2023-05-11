@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Grid from '@mui/material/Grid';
@@ -10,47 +10,25 @@ import InputLabel from '@mui/material/InputLabel';
 import { OutlinedInput } from '@mui/material';
 
 import { Logo } from '../../styles/common';
+import { useSignin } from './hooks/useSignin';
 import { Description, Form, Layout } from './styled';
 import { theme } from './theme';
-import { IUser } from '../../types';
 
-type Props = {
-  onSuccess(data: IUser): void;
-};
-
-interface IAuth {
-  login: string;
-  password: string;
-}
-
-const signin = async (data: IAuth): Promise<IUser> => {
-  const response = await fetch('/signin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-
-  return response.json();
-};
-
-export const Login = (props: Props) => {
-  const { mutate, isLoading } = useMutation<IUser, {}, IAuth>(signin, {
-    onSuccess: (data) => {
-      props.onSuccess(data);
-    },
-    onError: () => {
-      alert('there was an error');
-    },
-  });
+export const Login = () => {
+  const navigate = useNavigate();
 
   const [isVisible, setIsVisible] = React.useState(false);
   const [login, setLogin] = React.useState('');
   const [password, setPassword] = React.useState('');
 
+  const handleSuccess = () => {
+    navigate('/contacts');
+  };
+
+  const { signin, isLoading } = useSignin(handleSuccess);
+
   const handleSubmit = () => {
-    mutate({ login, password });
+    signin({ login, password });
   };
 
   const handlePasswordChange = () => {

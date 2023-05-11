@@ -10,7 +10,15 @@ import { globalStyle } from './styles/global';
 import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { App } from './App';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+      staleTime: 30000,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

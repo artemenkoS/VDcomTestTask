@@ -8,10 +8,10 @@ import { Avatar } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import { UserContext } from '../../App';
+import { useLogout } from '../Login/hooks/useLogout';
 import { Calendar } from '../Calendar/Calendar';
 import { Contacts } from '../Contacts/Contacts';
 import { ProjectReport } from '../ProjectReport/ProjectReport';
-
 import { Logo } from '../../styles/common';
 import {
   Content,
@@ -27,14 +27,12 @@ import {
   UserWrapper,
   LogOut,
 } from './styled';
+import { Contact } from '../Contact/Contact';
 
-type Props = {
-  onLogout(): void;
-};
-
-export const Home = (props: Props) => {
+export const Home = () => {
   const user = React.useContext(UserContext);
   const [search, setSearch] = React.useState('');
+  const { logout } = useLogout();
 
   if (!user) {
     return <Navigate to={'/login'} replace />;
@@ -49,7 +47,7 @@ export const Home = (props: Props) => {
       <Sidebar data-id="sidebar">
         <Logo>LOGO</Logo>
         <SidebarContent>
-          <RouteLink to="/">
+          <RouteLink to="/contacts">
             <ContactsIcon />
             &nbsp;Total Contacts
           </RouteLink>
@@ -63,7 +61,7 @@ export const Home = (props: Props) => {
           </RouteLink>
         </SidebarContent>
 
-        <LogOut onClick={props.onLogout}>
+        <LogOut onClick={() => logout()}>
           <LogoutIcon />
           <span>Logout</span>
         </LogOut>
@@ -85,10 +83,11 @@ export const Home = (props: Props) => {
 
         <Content data-id="content">
           <Routes>
-            <Route path="/" element={<Contacts search={search} />} />
+            <Route path="/contacts" element={<Contacts search={search} />} />
+            <Route path="/contacts/:contactId" element={<Contact />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/project-report" element={<ProjectReport />} />
-            <Route path="/*" element={<p>404</p>} />
+            <Route path="*" element={<p>404</p>} />
           </Routes>
         </Content>
       </ContentLayout>

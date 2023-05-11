@@ -12,17 +12,17 @@ import {
   TableSortLabel,
   TableRow,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { SwitchBaseProps } from '@mui/material/internal/SwitchBase';
-
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { useGetContacts } from './hooks/useGetContacts';
 import { EditModal } from './components/EditModal/EditModal';
 import { DeleteModal } from './components/DeleteModal/DeleteModal';
 import { AddModal } from './components/AddModal/AddModal';
 import { DEFAULT_ORDER, DEFAULT_ORDER_BY, DEFAULT_PAGE, DEFAULT_PER_PAGE, TITLES } from './constants';
+import { useGetContacts } from './hooks/useGetContacts';
 import { IContact, Order } from './types';
 
 import { CellText, EditContainer, PaginationLayout, RouteTitle, PreloaderWrap, AddContactButton } from './styled';
@@ -154,7 +154,9 @@ export function Contacts({ search }: Props) {
                 </TableCell>
                 {TITLES.map((title) => (
                   <TableCell size="small" key={title.id}>
-                    <CellText>{contact[title.id]}</CellText>
+                    <Link to={`/contacts/${contact.clientId}`}>
+                      <CellText>{contact[title.id]}</CellText>
+                    </Link>
                   </TableCell>
                 ))}
                 <TableCell size="small">
